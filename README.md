@@ -1,5 +1,26 @@
 # Q1 Final Project
 
+## Result Reproduction
+### Preprocessed Data and Embeddings
+Our original dataset and trained embeddings are stored in this [google drive folder](https://drive.google.com/drive/folders/1I0XicfB_W7FijCDsjLv6CCxep_y8fqgQ?usp=drive_link) due to the scale of these data. The code with detailed process can be found in the notebook **linear_semantic-codeBERT.ipynb**.
+
+Please download the files and put into corresponding folders (data and cache) in order for the command line argument to successfully process.
+### Dependency and Enviornment Setup
+After cloning the github repo to local repository and installing anaconda, cd into the directory and initiat a conda enviornemtn with command
+```
+conda create -n enviornment_name
+conda activate enviornment_name
+conda env create -f enviornment.yml
+```
+
+### Reproduce 
+In terminal, cd into the corresponding directory and run the following command to get the evaluation result. 
+```
+python run.py
+cd evaluation
+python relevanceeval.py annotationStore.csv train_py_result.csv
+```
+
 ## Architecture
 On a high level, our search will first embed all documents (i.e. Python code, documentation) into a vector space. For our baseline model, we use the Sentence Transformer 
 “all-MiniLM-L6-v2” on both documentation and code functions. We also use create a second model that uses the same Sentence Transformer on documentation and CodeBERT on code and a third model that uses BM25 on documentation and CodeBERT on code. Once a natural language query is inputted, the query will also be embedded in the same vector 
